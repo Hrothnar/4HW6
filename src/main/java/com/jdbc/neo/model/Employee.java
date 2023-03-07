@@ -1,12 +1,28 @@
 package com.jdbc.neo.model;
 
+import javax.persistence.*;
+
+@Table(name = "employees")
+@Entity
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
+    @Column
     private String first_name;
+    @Column
     private String last_name;
+    @Column
     private String gender;
+    @Column
     private int age;
+    @Column
     private long city_id;
+
+    public Employee() {
+
+    }
 
     public Employee(long id, String first_name, String last_name, String gender, int age, long city_id) {
         this.id = id;
