@@ -7,24 +7,20 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private long id;
-    @Column
     private String first_name;
-    @Column
     private String last_name;
-    @Column
     private String gender;
-    @Column
     private int age;
-    @Column
-    private long city_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private City city_id;
 
     public Employee() {
 
     }
 
-    public Employee(long id, String first_name, String last_name, String gender, int age, long city_id) {
+    public Employee(long id, String first_name, String last_name, String gender, int age, City city_id) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -33,7 +29,7 @@ public class Employee {
         this.city_id = city_id;
     }
 
-    public Employee(String first_name, String last_name, String gender, int age, long city_id) {
+    public Employee(String first_name, String last_name, String gender, int age, City city_id) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
@@ -41,7 +37,7 @@ public class Employee {
         this.city_id = city_id;
     }
 
-    public Employee(int age, long city_id) {
+    public Employee(int age, City city_id) {
         this.age = age;
         this.city_id = city_id;
     }
@@ -86,12 +82,12 @@ public class Employee {
         this.age = age;
     }
 
-    public long getCity_id() {
+    public City getCity_id() {
         return city_id;
     }
 
-    public void setCity_id(long city_id) {
-        this.city_id = city_id;
+    public void setCity_id(City city) {
+        this.city_id = city;
     }
 
     @Override
@@ -102,7 +98,7 @@ public class Employee {
                 ", last_name='" + last_name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", city_id=" + city_id +
+                ", city=" + city_id +
                 '}';
     }
 }

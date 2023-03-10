@@ -4,28 +4,13 @@ import com.jdbc.neo.dao.EmployeeDAO;
 import com.jdbc.neo.model.Employee;
 import com.jdbc.neo.util.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.sql.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class EmployeeDAOimpl implements EmployeeDAO {
-    private final static String URL = "jdbc:postgresql://localhost:5432/skypro";
-    private final static String USERNAME = "postgres";
-    private final static String PASSWORD = "nbv";
-    private static final Connection connection;
-
-    static {
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public void addEmployee(Employee employee) {
